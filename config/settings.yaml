@@ -1,0 +1,56 @@
+# Puget Sound OSINT Platform Configuration
+
+# Camera feed settings
+cameras_config: config/cameras.yaml
+storage_path: ./captures
+save_all_frames: true
+
+# ChatSurfer reporting
+chatsurfer:
+  enabled: true
+  callsign: PR01
+
+  # Output mode: webhook, websocket, file, stdout
+  mode: stdout
+
+  # Webhook settings (for Slack, Discord, custom endpoints)
+  # webhook_url: https://hooks.slack.com/services/xxx
+  # webhook_headers:
+  #   Authorization: Bearer xxx
+
+  # WebSocket settings
+  # websocket_url: wss://chatsurfer.example.com/ws
+
+  # File output (always written as backup)
+  output_file: reports/tacreps.log
+
+  # Image hosting URL base
+  image_base_url: http://localhost:8080/images/
+
+  # Rate limiting - min seconds between reports for same TAI
+  min_report_interval_sec: 30.0
+
+# Vessel detection (YOLOv8)
+detector:
+  enabled: true
+  model_path: yolov8n.pt  # Pre-trained nano model, auto-downloads on first run
+  confidence_threshold: 0.25
+  device: cpu  # or mps for Apple Silicon, cuda:0 for NVIDIA
+
+# Web dashboard
+web:
+  enabled: true
+  host: 0.0.0.0
+  port: 8080
+
+# WSDOT Vessels API
+# API key is configured via the web UI (ChatSurfer tab)
+wsdot_api:
+  enabled: true
+  base_url: https://www.wsdot.wa.gov/ferries/api/vessels/rest/
+  poll_interval_sec: 5.0
+
+# Logging
+logging:
+  level: INFO
+  file: logs/osint.log

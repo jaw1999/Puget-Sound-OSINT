@@ -1,0 +1,48 @@
+# Target Area of Interest (TAI) Mappings
+# Maps codenames to actual terminal locations
+
+tai_codes:
+  BALDER:
+    terminal: "Point Defiance"
+    terminal_id: 16
+    coordinates:
+      lat: 47.3059
+      lon: -122.5143
+    cameras:
+      - url: "https://images.wsdot.wa.gov/wsf/pointdefiance/terminal/pointdefiance.jpg"
+        name: "Point Defiance Terminal"
+
+  THOR:
+    terminal: "Tahlequah"
+    terminal_id: 21
+    coordinates:
+      lat: 47.3349
+      lon: -122.5068
+    cameras:
+      - url: "https://images.wsdot.wa.gov/wsf/tahlequah/terminal/tahlequah.jpg"
+        name: "Tahlequah Terminal"
+
+# WSF vessel platform codenames (optional mapping)
+platform_codes:
+  ORCA:
+    class: "Olympic"
+    vessels: ["Tokitae", "Samish", "Chimacum", "Suquamish"]
+  WHALE:
+    class: "Jumbo Mark II"
+    vessels: ["Tacoma", "Wenatchee", "Puyallup"]
+  SALMON:
+    class: "Issaquah"
+    vessels: ["Issaquah", "Kittitas", "Cathlamet", "Kitsap", "Sealth", "Chelan"]
+  EAGLE:
+    class: "Super"
+    vessels: ["Hyak", "Kaleetan", "Yakima", "Elwha"]
+  SEAL:
+    class: "Kwa-di Tabil"
+    vessels: ["Chetzemoka", "Kennewick", "Salish"]
+
+# Confidence levels for detection
+confidence_levels:
+  - CONFIRMED    # High confidence, verified
+  - PROBABLE     # Likely match
+  - POSSIBLE     # Uncertain
+  - UNKNOWN      # Cannot classify

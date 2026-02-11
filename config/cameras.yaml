@@ -1,0 +1,638 @@
+# Puget Sound Ferry Camera Feeds Configuration
+# All cameras verified working as of 2026-02-06
+# Source: WSDOT ArcGIS REST API + third-party discovery
+# Cameras organized by detection priority:
+#   TIER 1 = Water-facing, ferry visible (CV detection target)
+#   TIER 2 = Terminal/dock view, partial water (useful for docked ferry detection)
+#   TIER 3 = Holding/road only (operational awareness, no CV value)
+
+# ============================================================
+# TIER 1: WATER-FACING CAMERAS (primary CV detection targets)
+# ============================================================
+
+tier1_water_facing:
+
+  - name: Tahlequah Ferry Holding
+    id: tahlequah_holding
+    terminal_id: 21
+    url: https://images.wsdot.wa.gov/wsf/Tahlequah/holding/holding.jpg
+    enabled: true
+    coordinates:
+      lat: 47.3329
+      lon: -122.5070
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "EXCELLENT - dock extends into water, ferries arriving/departing clearly visible"
+
+  - name: Clinton Dock (Whidbey Telecom)
+    id: clinton_dock
+    terminal_id: 5
+    url: http://camserv.whidbeyhost.com/boothdock.jpg
+    enabled: true
+    coordinates:
+      lat: 47.9748
+      lon: -122.3520
+    refresh_sec: 30
+    source: whidbey_telecom
+    notes: "EXCELLENT - dock view with water and ferry visible"
+
+  - name: Guemes Island Ferry Dock
+    id: guemes_dock
+    url: https://www.skagitcounty.net/PublicWorksFerry/Images/ferrycam.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5130
+      lon: -122.6770
+    refresh_sec: 30
+    source: skagit_county
+    notes: "EXCELLENT - Anacortes Guemes ferry dock, water, loading ramp. High-res 666KB"
+
+  - name: Guemes Island Ferry at Dock
+    id: guemes_island
+    url: https://www.skagitcounty.net/PublicWorksFerry/Images/guemescam.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5295
+      lon: -122.6635
+    refresh_sec: 30
+    source: skagit_county
+    notes: "EXCELLENT - Guemes ferry vessel visible at dock with water background"
+
+  - name: Friday Harbor Marina (HDOnTap)
+    id: fridayharbor_marina
+    terminal_id: 10
+    url: https://portal.hdontap.com/snapshot/Friday_Harbor-Kenmore_ttv-CUST
+    enabled: true
+    coordinates:
+      lat: 48.5357
+      lon: -123.0159
+    refresh_sec: 30
+    source: hdontap
+    notes: "GOOD - marina/dock with water, ferry dock visible in distance"
+
+  - name: Skunk Bay Weather Cam
+    id: skunkbay
+    url: http://skunkbayweather.com/Canon/NightCam.jpg
+    enabled: true
+    coordinates:
+      lat: 47.9200
+      lon: -122.5670
+    refresh_sec: 300
+    source: skunkbay_weather
+    notes: "GOOD - wide Puget Sound panorama, high-res Canon DSLR. Night/clear sky only. Ferries transit through FOV on Edmonds-Kingston and Mukilteo-Clinton routes"
+
+# ============================================================
+# TIER 2: PARTIAL WATER VIEW (docked ferry detection possible)
+# ============================================================
+
+tier2_partial_water:
+
+  - name: Anacortes Ferry Holding
+    id: anacortes_holding
+    terminal_id: 1
+    url: https://images.wsdot.wa.gov/wsf/anacortes/holding/anahold.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5034
+      lon: -122.6795
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Water/islands visible in background behind holding lot"
+
+  - name: Anacortes Ferry Terminal
+    id: anacortes
+    terminal_id: 1
+    url: https://images.wsdot.wa.gov/wsf/anacortes/terminal/anaterm.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5060
+      lon: -122.6790
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Terminal building with some water visible in background"
+
+  - name: Kingston Terminal
+    id: kingston
+    terminal_id: 12
+    url: https://images.wsdot.wa.gov/wsf/kingston/terminal/kingston.jpg
+    enabled: true
+    coordinates:
+      lat: 47.7971
+      lon: -122.4955
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Holding lot with dock edge visible in distance"
+
+  - name: Vashon Ferry Holding South
+    id: vashon_holding_south
+    terminal_id: 22
+    url: https://images.wsdot.wa.gov/wsf/vashon/HoldingSouth.jpg
+    enabled: true
+    coordinates:
+      lat: 47.5105
+      lon: -122.4639
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Holding lanes with water visible on edges"
+
+# ============================================================
+# TIER 3: HOLDING/ROAD CAMERAS (operational awareness only)
+# Enabled but lower priority for CV processing
+# ============================================================
+
+tier3_operational:
+
+  # --- Seattle / Colman Dock ---
+  - name: Seattle Ferry Main Vehicle Holding
+    id: seattle_main
+    terminal_id: 7
+    url: https://images.wsdot.wa.gov/wsf/colman/seattlemain.jpg
+    enabled: true
+    coordinates:
+      lat: 47.6028
+      lon: -122.3382
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle holding lot, Colman Dock area"
+
+  # --- Bainbridge Island ---
+  - name: Bainbridge Island Ferry Holding
+    id: bainbridge
+    terminal_id: 3
+    url: https://images.wsdot.wa.gov/wsf/Bainbridge/Bainbridge.jpg
+    enabled: true
+    coordinates:
+      lat: 47.6231
+      lon: -122.5112
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle holding lanes"
+
+  # --- Bremerton ---
+  - name: Bremerton Ferry Holding
+    id: bremerton_holding
+    terminal_id: 4
+    url: https://images.wsdot.wa.gov/wsf/bremerton/holding/holding.jpg
+    enabled: true
+    coordinates:
+      lat: 47.5627
+      lon: -122.6254
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle holding lanes"
+
+  # --- Fauntleroy ---
+  - name: Fauntleroy Ferry Holding
+    id: fauntleroy
+    terminal_id: 9
+    url: https://images.wsdot.wa.gov/wsf/fauntleroy/terminal/fauntleroy.jpg
+    enabled: true
+    coordinates:
+      lat: 47.5232
+      lon: -122.3936
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle loading lanes, sliver of water"
+
+  # --- Southworth ---
+  - name: Southworth Ferry Terminal
+    id: southworth_terminal
+    terminal_id: 20
+    url: https://images.wsdot.wa.gov/wsf/southworth/terminal.jpg
+    enabled: true
+    coordinates:
+      lat: 47.5119
+      lon: -122.4973
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Terminal road view"
+
+  - name: Southworth Ferry Holding
+    id: southworth_holding
+    terminal_id: 20
+    url: https://images.wsdot.wa.gov/wsf/southworth/holding.jpg
+    enabled: true
+    coordinates:
+      lat: 47.5119
+      lon: -122.4973
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle holding area"
+
+  # --- Mukilteo ---
+  - name: Mukilteo Terminal
+    id: mukilteo
+    terminal_id: 14
+    url: https://images.wsdot.wa.gov/wsf/Mukilteo/Terminal/mukterm.jpg
+    enabled: true
+    coordinates:
+      lat: 47.9283
+      lon: -122.3006
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Empty numbered lanes"
+
+  # --- Clinton ---
+  - name: Clinton Terminal
+    id: clinton
+    terminal_id: 5
+    url: https://images.wsdot.wa.gov/wsf/clinton/terminal/clinton.jpg
+    enabled: true
+    coordinates:
+      lat: 47.9747
+      lon: -122.3521
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle loading lanes split-screen"
+
+  # --- Edmonds ---
+  - name: Edmonds Ferry Holding
+    id: edmonds_holding
+    terminal_id: 8
+    url: https://images.wsdot.wa.gov/wsf/edmonds/holding.jpg
+    enabled: true
+    coordinates:
+      lat: 47.8097
+      lon: -122.3832
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Split-screen vehicle holding lanes"
+
+  # --- Port Townsend ---
+  - name: Port Townsend Terminal
+    id: porttownsend
+    terminal_id: 17
+    url: https://images.wsdot.wa.gov/wsf/PortTownsend/terminal/ptterm.jpg
+    enabled: true
+    coordinates:
+      lat: 48.1121
+      lon: -122.7605
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Holding lot, foggy"
+
+  # --- Coupeville/Keystone ---
+  - name: Coupeville/Keystone Terminal
+    id: coupeville
+    terminal_id: 11
+    url: https://images.wsdot.wa.gov/wsf/Keystone/terminal/keyterm.jpg
+    enabled: true
+    coordinates:
+      lat: 48.1591
+      lon: -122.6727
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Parking lot"
+
+  # --- Friday Harbor ---
+  - name: Friday Harbor Ferry Holding
+    id: fridayharbor_holding
+    terminal_id: 10
+    url: https://images.wsdot.wa.gov/wsf/fridayharbor/friholding.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5351
+      lon: -123.0066
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Numbered lanes"
+
+  - name: Friday Harbor Upper Holding
+    id: fridayharbor_upper
+    terminal_id: 10
+    url: https://images.wsdot.wa.gov/wsf/fridayharbor/upperholding.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5333
+      lon: -123.0149
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Upper lot"
+
+  # --- Orcas Island ---
+  - name: Orcas Ferry Holding
+    id: orcas_holding
+    terminal_id: 15
+    url: https://images.wsdot.wa.gov/wsf/orcas/holding.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5987
+      lon: -122.9456
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Numbered lanes"
+
+  - name: Orcas Ferry Booth
+    id: orcas_booth
+    terminal_id: 15
+    url: https://images.wsdot.wa.gov/wsf/orcas/booth.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5987
+      lon: -122.9456
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Toll booth view"
+
+  # --- Lopez Island ---
+  - name: Lopez Ferry Approach
+    id: lopez_approach
+    terminal_id: 13
+    url: https://images.wsdot.wa.gov/wsf/lopez/approach.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5690
+      lon: -122.8846
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Road approach"
+
+  - name: Lopez Ferry Holding
+    id: lopez_holding
+    terminal_id: 13
+    url: https://images.wsdot.wa.gov/wsf/lopez/holding.jpg
+    enabled: true
+    coordinates:
+      lat: 48.5699
+      lon: -122.8838
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Holding lanes with cars"
+
+  # --- Point Defiance ---
+  - name: Point Defiance Ferry Holding
+    id: pointdefiance_holding
+    terminal_id: 16
+    url: https://images.wsdot.wa.gov/wsf/PointDefiance/PtDefHolding.jpg
+    enabled: true
+    coordinates:
+      lat: 47.3034
+      lon: -122.5148
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Vehicle holding area"
+
+  - name: Point Defiance Ferry Booth
+    id: pointdefiance_booth
+    terminal_id: 16
+    url: https://images.wsdot.wa.gov/wsf/PointDefiance/PtDefBooth.jpg
+    enabled: true
+    coordinates:
+      lat: 47.3037
+      lon: -122.5148
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "Toll booth road"
+
+  # --- Tahlequah VMS ---
+  - name: Tahlequah Ferry Road
+    id: tahlequah_road
+    terminal_id: 21
+    url: https://images.wsdot.wa.gov/wsf/Tahlequah/VMSSign/VMSSign.jpg
+    enabled: true
+    coordinates:
+      lat: 47.3331
+      lon: -122.5070
+    refresh_sec: 30
+    source: wsdot_arcgis
+    notes: "VMS sign and road"
+
+# ============================================================
+# DISABLED: Road/traffic cameras with zero water visibility
+# Kept for reference but not polled
+# ============================================================
+
+disabled:
+
+  # Whidbey Telecom road cameras (no water)
+  - name: Clinton Uphill (Booth Hill)
+    id: clinton_uphill
+    url: http://camserv.whidbeyhost.com/boothhill.jpg
+    enabled: false
+    coordinates:
+      lat: 47.9753
+      lon: -122.3515
+    notes: "Road/intersection only, no water"
+
+  - name: Clinton East View
+    id: clinton_east
+    url: http://camserv.whidbeyhost.com/clinteast.jpg
+    enabled: false
+    coordinates:
+      lat: 47.9750
+      lon: -122.3510
+    notes: "Road/intersection only, no water"
+
+  - name: Clinton West View
+    id: clinton_west
+    url: http://camserv.whidbeyhost.com/clintwest.jpg
+    enabled: false
+    coordinates:
+      lat: 47.9750
+      lon: -122.3525
+    notes: "Road/intersection only, no water"
+
+  # SR 525 traffic cameras (road intersections)
+  - name: Mukilteo SR 525 at 5th St North
+    id: mukilteo_sr525_north
+    url: https://images.wsdot.wa.gov/nw/525vc00820.jpg
+    enabled: false
+    notes: "Road intersection, no water"
+
+  - name: Mukilteo SR 525 at 5th St South
+    id: mukilteo_sr525_south
+    url: https://images.wsdot.wa.gov/nw/525vc00819.jpg
+    enabled: false
+    notes: "Road intersection, no water"
+
+  - name: Mukilteo SR 525 at Clover Ln
+    id: mukilteo_sr525_clover
+    url: https://images.wsdot.wa.gov/nw/525vc00740.jpg
+    enabled: false
+    notes: "Road intersection, no water"
+
+  # Street/sign cameras
+  - name: Port Townsend Street
+    id: porttownsend_street
+    url: https://images.wsdot.wa.gov/wsf/PortTownsend/Street/ptStreet.jpg
+    enabled: false
+    notes: "Toll booth/street, no water"
+
+  - name: Coupeville Street
+    id: coupeville_street
+    url: https://images.wsdot.wa.gov/wsf/Keystone/Street/keyStreet.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Edmonds W Dayton St
+    id: edmonds_dayton
+    url: https://images.wsdot.wa.gov/wsf/edmonds/104dayton.jpg
+    enabled: false
+    notes: "Street intersection, no water"
+
+  - name: Edmonds VMS Sign
+    id: edmonds_vms
+    url: https://images.wsdot.wa.gov/wsf/edmonds/104vms_wts.jpg
+    enabled: false
+    notes: "VMS sign on road, no water"
+
+  - name: Edmonds Underpass
+    id: edmonds_underpass
+    url: https://images.wsdot.wa.gov/wsf/edmonds/104underpass.jpg
+    enabled: false
+    notes: "Road underpass, no water"
+
+  - name: Edmonds Pine
+    id: edmonds_pine
+    url: https://images.wsdot.wa.gov/wsf/edmonds/104pine.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Kingston Ferry Sign East
+    id: kingston_fse
+    url: https://images.wsdot.wa.gov/wsf/kingston/fse/fse.jpg
+    enabled: false
+    notes: "Ferry sign on road, no water"
+
+  - name: Kingston Ferry Sign West
+    id: kingston_fsw
+    url: https://images.wsdot.wa.gov/wsf/kingston/fsw/fsw.jpg
+    enabled: false
+    notes: "Ferry sign on road, no water"
+
+  - name: Kingston Barber
+    id: kingston_barber
+    url: https://images.wsdot.wa.gov/wsf/kingston/barber/barber.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Kingston SR 104 Toll Booths
+    id: kingston_tolls
+    url: https://images.wsdot.wa.gov/wsf/kingston/washington.jpg
+    enabled: false
+    notes: "Toll booths, no water"
+
+  - name: Anacortes Ferry Terminal Rd
+    id: anacortes_road
+    url: https://images.wsdot.wa.gov/wsf/anacortes/road/anaroad.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Fauntleroy Way looking North
+    id: fauntleroy_terminal_n
+    url: https://images.wsdot.wa.gov/wsf/fauntleroy/terminal/fauntterminal.jpg
+    enabled: false
+    notes: "Road/intersection, no water"
+
+  - name: Fauntleroy Trenton St
+    id: fauntleroy_trenton
+    url: https://images.wsdot.wa.gov/wsf/fauntleroy/terminal/faunttrenton.jpg
+    enabled: false
+    notes: "Street, no water"
+
+  - name: Fauntleroy Lincoln Park
+    id: fauntleroy_lincoln
+    url: https://images.wsdot.wa.gov/wsf/fauntleroy/terminal/fauntlincoln.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Fauntleroy Way and Cloverdale
+    id: fauntleroy_cloverdale
+    url: https://www.seattle.gov/trafficcams/images/Fauntleroy_SW_Cloverdale_NS.jpg
+    enabled: false
+    source: seattle_gov
+    notes: "City of Seattle traffic cam, intersection only"
+
+  # Vashon road cameras
+  - name: Vashon Hwy & Bunker North
+    id: vashon_bunker_n
+    url: https://images.wsdot.wa.gov/wsf/vashon/VSHvc00001.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Vashon Hwy & Bunker South
+    id: vashon_bunker_s
+    url: https://images.wsdot.wa.gov/wsf/vashon/VSHvc00002.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Vashon Hwy & 112th North
+    id: vashon_112th_n
+    url: https://images.wsdot.wa.gov/wsf/vashon/VSHvc00004.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  - name: Vashon Hwy & 112th South
+    id: vashon_112th_s
+    url: https://images.wsdot.wa.gov/wsf/vashon/VSHvc00003.jpg
+    enabled: false
+    notes: "Road, no water"
+
+  # Guemes lane camera (parking only)
+  - name: Guemes Anacortes Lane
+    id: guemes_lane
+    url: https://www.skagitcounty.net/PublicWorksFerry/Images/ferryline.jpg
+    enabled: false
+    source: skagit_county
+    notes: "Parking/ticket lane, no water"
+
+  # Old URLs that 404
+  - name: Edmonds Terminal (old URL)
+    id: edmonds_old
+    url: https://images.wsdot.wa.gov/wsf/edmonds/terminal/edmonds.jpg
+    enabled: false
+    notes: "404 - replaced by edmonds_holding"
+
+  - name: Seattle/Colman Dock (old URL)
+    id: seattle_old
+    url: https://images.wsdot.wa.gov/wsf/seattle/terminal/seattle.jpg
+    enabled: false
+    notes: "404 - replaced by seattle_main"
+
+  - name: Bremerton Terminal (old URL)
+    id: bremerton_old
+    url: https://images.wsdot.wa.gov/wsf/bremerton/terminal/bremerton.jpg
+    enabled: false
+    notes: "404 - replaced by bremerton_holding"
+
+  - name: Vashon Terminal (old URL)
+    id: vashon_old
+    url: https://images.wsdot.wa.gov/wsf/vashon/terminal/vashon.jpg
+    enabled: false
+    notes: "404 - replaced by vashon_holding_south"
+
+  - name: Point Defiance Terminal (old URL)
+    id: pointdefiance_old
+    url: https://images.wsdot.wa.gov/wsf/pointdefiance/terminal/pointdefiance.jpg
+    enabled: false
+    notes: "404 - replaced by pointdefiance_holding"
+
+  - name: Tahlequah Terminal (old URL)
+    id: tahlequah_old
+    url: https://images.wsdot.wa.gov/wsf/tahlequah/terminal/tahlequah.jpg
+    enabled: false
+    notes: "404 - replaced by tahlequah_holding"
+
+  - name: Friday Harbor Terminal (old URL)
+    id: fridayharbor_old
+    url: https://images.wsdot.wa.gov/wsf/fridayharbor/terminal/fridayharbor.jpg
+    enabled: false
+    notes: "404 - replaced by fridayharbor_holding"
+
+  - name: Orcas Terminal (old URL)
+    id: orcas_old
+    url: https://images.wsdot.wa.gov/wsf/orcas/terminal/orcas.jpg
+    enabled: false
+    notes: "404 - replaced by orcas_holding"
+
+  - name: Lopez Terminal (old URL)
+    id: lopez_old
+    url: https://images.wsdot.wa.gov/wsf/lopez/terminal/lopez.jpg
+    enabled: false
+    notes: "404 - replaced by lopez_holding"
+
+  - name: Southworth Holding (placeholder image)
+    id: southworth_placeholder
+    url: https://images.wsdot.wa.gov/wsf/southworth/terminal/southworth.jpg
+    enabled: false
+    notes: "Returns 200 but shows 'image currently unavailable' placeholder"
