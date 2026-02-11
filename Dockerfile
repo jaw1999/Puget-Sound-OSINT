@@ -11,7 +11,7 @@ WORKDIR /app
 # Install CPU-only PyTorch first to avoid pulling CUDA packages
 RUN pip install --no-cache-dir "numpy<2" && \
     pip install --no-cache-dir \
-    torch==2.1.2+cpu torchvision==0.16.2+cpu \
+    torch==2.1.2 torchvision==0.16.2 \
     --index-url https://download.pytorch.org/whl/cpu
 
 # Install remaining dependencies, skipping torch (already installed as CPU-only)

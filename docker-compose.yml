@@ -1,0 +1,11 @@
+services:
+  osint:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config:/app/config
+      - ./captures:/app/captures
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    restart: unless-stopped

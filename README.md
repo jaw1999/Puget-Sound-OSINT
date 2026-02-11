@@ -71,12 +71,27 @@ detector:
 
 ## Docker
 
-```bash
-docker build -t puget-sound-osint .
-```
+### Docker Compose
 
 ```bash
+docker compose up -d
+```
+
+Builds the image, mounts `config/`, `captures/`, `reports/`, `logs/` from the host, exposes port 8080. Restarts automatically unless stopped.
+
+```bash
+docker compose down     # stop
+docker compose logs -f  # tail logs
+docker compose build    # rebuild after code changes
+```
+
+### Manual Docker
+
+```bash
+docker build -t puget-sound-osint .
+
 docker run -p 8080:8080 \
+  -v $(pwd)/config:/app/config \
   -v $(pwd)/captures:/app/captures \
   -v $(pwd)/reports:/app/reports \
   -v $(pwd)/logs:/app/logs \
@@ -84,17 +99,6 @@ docker run -p 8080:8080 \
 ```
 
 The image uses CPU-only PyTorch (~1.2GB vs ~4GB with CUDA). Builds on `python:3.10-slim`. Enforces `numpy<2` for torch compatibility.
-
-### Override Config
-
-Mount a custom settings file:
-
-```bash
-docker run -p 8080:8080 \
-  -v $(pwd)/config:/app/config \
-  -v $(pwd)/captures:/app/captures \
-  puget-sound-osint
-```
 
 ## Configuration
 
