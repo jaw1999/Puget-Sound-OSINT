@@ -17,7 +17,8 @@ RUN pip install --no-cache-dir "numpy<2" && \
 # Install remaining dependencies, skipping torch (already installed as CPU-only)
 COPY requirements.txt .
 RUN grep -iv '^torch' requirements.txt > requirements-notorch.txt && \
-    pip install --no-cache-dir -r requirements-notorch.txt
+    echo "numpy<2" > /tmp/constraints.txt && \
+    pip install --no-cache-dir -c /tmp/constraints.txt -r requirements-notorch.txt
 
 # Copy application code and model files
 COPY . .
